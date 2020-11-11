@@ -17,9 +17,9 @@ jobs:
       - image: cimg/node:13.8.0
     steps:
      -  run: return 1
-     -  run: echo "Hello Error"
-         when: 
-            - on_fail
+     -  run: 
+         command: echo "Hello Error"
+         when: on_fail
 
 workflows:
   # Name the workflow "welcome"
