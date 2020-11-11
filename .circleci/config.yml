@@ -21,17 +21,28 @@ jobs:
       - image: cimg/node:13.8.0
     steps:
       - run: echo $MY_NAME
+  save_hello_world_output:
+    docker:
+      - image: cimg/node:13.8.0
+    steps:
+      - run: echo "Hello world" 
+      - persist_to_workspace:
+        root: /tmp/dir
+        paths:
+          - foo/bar
+  
 workflows:
   # Name the workflow "welcome"
 
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
-      - print_hello
-      - print_world:
-          requires: 
-            - print_hello
-      - print_name:
-          requires: 
-            - print_world
+     # - welcome/run
+     # - print_hello
+     # - print_world:
+      #    requires: 
+       #     - print_hello
+      #- print_name:
+       #   requires: 
+        #    - print_world
+      save_hello_world_output
