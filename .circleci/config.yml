@@ -34,4 +34,7 @@ workflows:
       - print_name:
           requires: 
             - print_world
+       - print_name:
+          requires: 
+            - print_name
       
