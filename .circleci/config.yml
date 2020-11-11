@@ -11,12 +11,12 @@ jobs:
       - image: cimg/node:13.8.0
     steps:
       - run: echo "print" 
-   print_world:
+  print_world:
     docker:
       - image: cimg/node:13.8.0
     steps:
       - run: echo "world" 
-   print_name:
+  print_name:
     docker:
       - image: cimg/node:13.8.0
     steps:
