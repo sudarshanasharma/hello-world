@@ -9,11 +9,11 @@ jobs:
   -print_hello:
     executor: circleci/node:13.8.0
       steps:
-         run: echo "Hello" 
+      - run: echo "Hello" 
   -print_world
     executor: circleci/node:13.8.0
       steps:
-         run: echo "World"
+      - run: echo "World"
       requires: print_hello   
 workflows:
   # Name the workflow "welcome"
