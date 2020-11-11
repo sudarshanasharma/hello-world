@@ -5,15 +5,19 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of 
+executors:
+    node:
+      docker:
+         - image: circleci/welcome-config-image:0.2.1
 jobs:
     print_hello:
-       executor: circleci/node:13.8.0
+       executor: node
        steps:
-          - echo "Hello" 
+          - run echo "Hello" 
    print_world:
-       executor: circleci/node:13.8.0
+       executor: node
        steps:
-          - echo "World"
+          - run echo "World"
        requires: 
           - print_hello   
 workflows:
