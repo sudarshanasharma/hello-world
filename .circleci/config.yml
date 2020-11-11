@@ -6,12 +6,12 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of 
 jobs:
-  - print_hello:
+    print_hello:
     executor: 
        circleci/node:13.8.0
     steps:
       - run: echo "Hello" 
-  - print_world:
+   print_world:
     executor:
       circleci/node:13.8.0
     steps:
