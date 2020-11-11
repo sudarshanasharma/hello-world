@@ -8,13 +8,13 @@ orbs:
 jobs:
   -print_hello:
     executor: circleci/node:13.8.0
-      steps:
+    steps:
       - run: echo "Hello" 
   -print_world
     executor: circleci/node:13.8.0
-      steps:
+    steps:
       - run: echo "World"
-      requires: print_hello   
+    requires: print_hello   
 workflows:
   # Name the workflow "welcome"
   welcome:
