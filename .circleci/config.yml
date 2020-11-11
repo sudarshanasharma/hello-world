@@ -2,13 +2,12 @@
 version: 2.1
 # Use a package of configuration called an orb.
 orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
+  welcome-orb: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of 
 executors:
     node:
       docker:
-         - image: circleci/welcome-config-image:0.2.1
+         - image: circleci/node:13.8.0
 jobs:
     print_hello:
        executor: node
