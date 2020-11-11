@@ -18,7 +18,8 @@ jobs:
     steps:
      -  run: return 1
      -  run: echo "Hello Error"
-         when: on_fail
+         when: 
+            - on_fail
 
 workflows:
   # Name the workflow "welcome"
