@@ -25,7 +25,7 @@ jobs:
     docker:
       - image: cimg/node:13.8.0
     steps:
-      - run: echo "Hello world" 
+      - run: echo "Hello world" >output.txt
       - persist_to_workspace:
         root: /tmp/dir
         paths:
