@@ -5,26 +5,31 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
 # Orchestrate or schedule a set of jobs
-commands:
-  print_pipeline_id:
-    description: "A very simple command for demonstration purposes"
-    steps:
-      - run: echo $CIRCLE_WORKFLOW_ID
-
 jobs:
-  print_pipeline:
+  save_inventory:
     docker:
       - image: cimg/node:13.8.0
     steps:
-     -  run: return 1
-     -  run: 
-         command: echo "Hello Error"
-         when: on_fail
-
+     -  run: echo "[all]" >~inventory
+     -  run: echo "54.185.52.9" >>inventory 
+     -  persist_to_workspace:
+          root: ~/
+          paths:
+            - inventory
+  print_inventory:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: cat ~/inventory
 workflows:
   # Name the workflow "welcome"
 
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - print_pipeline
+      - save_inventory
+      - print_inventory:
+          requires:
+              - save_inventory
