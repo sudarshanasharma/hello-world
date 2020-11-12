@@ -10,8 +10,8 @@ jobs:
     docker:
       - image: cimg/node:13.8.0
     steps:
-     -  run: echo "[all]" >~inventory
-     -  run: echo "54.185.52.9" >>inventory 
+     -  run: echo "[all]" >~/inventory
+     -  run: echo "54.185.52.9" >>~/inventory 
      -  persist_to_workspace:
           root: ~/
           paths:
