@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ansible-playbook -i inventory main_remote.yml --ssh-common-args='-o StrictHostKeyChecking=no'
+            ansible-playbook -i inventory main_remote.yml --private-key gangamma.pem
 
 workflows:
   my_workflow:
