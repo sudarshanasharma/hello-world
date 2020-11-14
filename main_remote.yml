@@ -4,3 +4,5 @@
   user: ubuntu
   roles:
   - setup
+  environment:
+   ANSIBLE_HOST_KEY_CHECKING: False
