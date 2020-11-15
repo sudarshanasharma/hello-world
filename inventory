@@ -1,5 +1,2 @@
 [all]
-ec2-54-212-206-187.us-west-2.compute.amazonaws.com
-
-[all:vars] 
-ansible_ssh_common_args='-o StrictHostKeyChecking=no -o userknownhostsfile=/dev/null' 
+ec2-52-42-163-3.us-west-2.compute.amazonaws.com
