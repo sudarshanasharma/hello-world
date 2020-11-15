@@ -14,6 +14,7 @@ jobs:
             apk add --update ansible # install the dependencies needed for your playbook
       - run:
          name: disable host key checking
+         become : yes
          command: |
            export ANSIBLE_HOST_KEY_CHECKING=False
       - run:
