@@ -8,37 +8,29 @@
   become: yes
   apt:
     upgrade: yes
-
-- name: remove dependencies that are no longer required
+    
+- name: "open the server1"
   become: yes
-  apt:
-    autoremove: yes
-
-- name: "install dependencies."
-  become: yes
-  apt:
-    name: ["nodejs", "npm"]
-    state: latest
-    update_cache: yes
-
-- name: "install pm2"
-  become: yes
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: present
-
-- name: Creates directory
-  file:
-    path: ~/web
-    state: directory
-
-- name: Copy index test page
-  template:
-    src: "files/index.js"
-    dest: "~/web/index.js"
-
-- name: Executing node
   shell: |
-    pm2 start ~/web/index.js -f
+   curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+  
+- name: "open the server2"
+  become: yes
+  shell: |
+   sudo apt-get install -y nodejs
+   
+- name: "open the server3"
+  become: yes
+  shell: |
+   sudo apt-get -y install build-essential
+  
+- name: "open the server4"
+  copy:
+     src: index.js
+     dest: /home/ubuntu/index.js
+     backup: yes
+     
+- name: "open the server5"
+  become: yes
+  shell: |
+   node index.js -f
