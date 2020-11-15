@@ -1,29 +1,27 @@
 version: 2.1
 
 jobs:
-  configure_infrastructure:
+  smoke_test:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: alpine:latest
     steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints: ["4b:b1:46:26:19:82:2a:5a:6e:f1:02:c0:ef:09:db:fd"] # You can get this ID in the section where you registered the SSH Key
+        - run: apk add --update curl
+        - run:
+            name: smoke test.
+            command: |
+              URL="https://blog.udacity.com/"
+              if curl -s --head ${URL} # test if blog.udacity. com exists
+              then
+               return 0
+              else
+               return 1
+              fi
       - run:
-          name: Install dependencies
-          command: |
-            apk add --update ansible # install the dependencies needed for your playbook
-      - run:
-         name: disable host key checking
-         become : yes
-         command: |
-           echo "[defaults]">>~/.ansible.cfg
-           echo "host_key_checking=False" >>~/.ansible.cfg
-      - run:
-          name: Configure server
-          command: |
-            ansible-playbook -i inventory main_remote.yml
+          name: on error
+          command: echo "Hello Error!"
+          when: on_fail
 
 workflows:
   my_workflow:
     jobs:
-      - configure_infrastructure
+      - smoke_test
