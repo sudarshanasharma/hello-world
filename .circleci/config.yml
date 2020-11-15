@@ -26,8 +26,8 @@ jobs:
 
   workflows:
     default:
-      jobs:
-        - create_and_deploy_front_end
-        - promote_to_production
-            requires: 
-                - create_and_deploy_front_end
+       jobs:
+         - create_and_deploy_front_end
+         - promote_to_production:
+             requires:
+               - create_and_deploy_front_end
