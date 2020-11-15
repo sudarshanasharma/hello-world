@@ -16,7 +16,7 @@ jobs:
          name: disable host key checking
          become : yes
          command: |
-           export ANSIBLE_HOST_KEY_CHECKING=False
+           echo "ssh_args = -o StrictHostKeyChecking=no" >>/etc/ansible/ansible.cfg
       - run:
           name: Configure server
           command: |
