@@ -17,7 +17,7 @@ jobs:
          become : yes
          command: |
            echo "[ssh_connection]">>~/.ansible.cfg
-           echo "ssh_args = -o StrictHostKeyChecking=no" >>~/.ansible.cfg
+           echo "ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" >>~/.ansible.cfg
       - run:
           name: Configure server
           command: |
