@@ -21,8 +21,8 @@ jobs:
        
      steps:
        - run: |
-           aws cloudformation describe-stacks \
-           --query Stacks[].Outputs[].OutputValue \
+           aws cloudformation describe-stacks --stack-name cloudfront \
+           --query Stacks[0].Outputs[].OutputValue \
            --output text > ~/id.txt
        - persist_to_workspace:
           root: ~/
