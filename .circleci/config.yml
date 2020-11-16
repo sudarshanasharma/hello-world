@@ -43,11 +43,14 @@ jobs:
   
   clean_up_old_front_end:  
       docker:
-      - image: circleci/node:13.8.0
+      - image: sudarshanas/awsplustar:0.0.1
+        auth:
+           username: sudarshanas
+           password: Palki@12345
       steps:
       - attach_workspace:
             at: ~/
-      - run: pipeline = cat ~/id.txt
+      - run: pipeline=echo ~/id.txt
       - run: aws s3 rm "s3://$pipeline" --recursive
       - run: aws cloudformation delete-stack --stack-name "stk-$pipeline"
 
