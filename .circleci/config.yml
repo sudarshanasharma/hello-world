@@ -15,7 +15,6 @@ jobs:
   get_last_deployment_id:
      docker:
        - image: amazon/aws-cli
-     become: yes
      steps:
        - run: apt-get install tar
        - run: |
