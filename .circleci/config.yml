@@ -11,6 +11,20 @@ jobs:
             --stack-name "stk-$CIRCLE_WORKFLOW_ID" \
             --parameter-overrides NAME="$CIRCLE_WORKFLOW_ID"
       - run: aws s3 sync . s3://"$CIRCLE_WORKFLOW_ID" --delete
+      
+  get_last_deployment_id:
+     docker:
+       - image: amazon/aws-cli
+     steps:
+       - run: |
+           aws cloudformation describe-stacks \
+           --query Stacks[].Outputs[?OutputKey=='PipelineID'].OutputValue\
+           --output text > ~/id.txt
+       - persist_to_workspace:
+          root: ~/
+          paths:
+            - id.txt
+
 
   promote_to_production:
     docker:
@@ -22,7 +36,14 @@ jobs:
             --template-file cloudfront.yml \
             --stack-name cloudfront \
             --parameter-overrides PipelineID="$CIRCLE_WORKFLOW_ID"
-
+  
+  clean_up_old_front_end:  
+      docker:
+      - image: amazon/aws-cli
+      steps:
+      - attach_workspace:
+            at: ~/
+      - run: cat ~/id.txt
 
 workflows:
    default:
