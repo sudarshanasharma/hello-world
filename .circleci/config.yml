@@ -16,6 +16,7 @@ jobs:
      docker:
        - image: amazon/aws-cli
      steps:
+       - run: sudo apt-get install tar
        - run: |
            aws cloudformation describe-stacks \
            --query Stacks[].Outputs[?OutputKey=='PipelineID'].OutputValue \
