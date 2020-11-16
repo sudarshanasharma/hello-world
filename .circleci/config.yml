@@ -15,8 +15,9 @@ jobs:
   get_last_deployment_id:
      docker:
        - image: amazon/aws-cli
+     become: yes
      steps:
-       - run: sudo apt-get install tar
+       - run: apt-get install tar
        - run: |
            aws cloudformation describe-stacks \
            --query Stacks[].Outputs[?OutputKey=='PipelineID'].OutputValue \
