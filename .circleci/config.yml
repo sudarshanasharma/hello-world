@@ -18,7 +18,7 @@ jobs:
      steps:
        - run: |
            aws cloudformation describe-stacks \
-           --query Stacks[].Outputs[?OutputKey=='PipelineID'].OutputValue\
+           --query Stacks[].Outputs[?OutputKey=='PipelineID'].OutputValue \
            --output text > ~/id.txt
        - persist_to_workspace:
           root: ~/
