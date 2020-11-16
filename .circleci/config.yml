@@ -47,7 +47,7 @@ jobs:
       steps:
       - attach_workspace:
             at: ~/
-      - run: export pipeline = cat ~/id.txt
+      - run: pipeline = cat ~/id.txt
       - run: aws s3 rm "s3://$pipeline" --recursive
       - run: aws cloudformation delete-stack --stack-name "stk-$pipeline"
 
