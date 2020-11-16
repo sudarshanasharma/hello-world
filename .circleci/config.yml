@@ -14,8 +14,11 @@ jobs:
       
   get_last_deployment_id:
      docker:
-       - image: circleci/node:13.8.0
-       - image: amazon/aws-cli
+       - image: sudarshanas/awsplustar:0.0.1
+         auth:
+           username: sudarshanas
+           password: Palki@12345
+       
      steps:
        - run: |
            aws cloudformation describe-stacks \
