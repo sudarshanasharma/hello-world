@@ -15,8 +15,8 @@ jobs:
   get_last_deployment_id:
      docker:
        - image: amazon/aws-cli
+       - image: circleci/node:13.8.0
      steps:
-       - run: apt-get install tar
        - run: |
            aws cloudformation describe-stacks \
            --query Stacks[].Outputs[?OutputKey=='PipelineID'].OutputValue \
@@ -41,6 +41,7 @@ jobs:
   clean_up_old_front_end:  
       docker:
       - image: amazon/aws-cli
+       - image: circleci/node:13.8.0
       steps:
       - attach_workspace:
             at: ~/
