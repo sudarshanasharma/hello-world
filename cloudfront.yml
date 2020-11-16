@@ -31,5 +31,3 @@ Resources:
 Outputs:
   PipelineID:
     Value: !Sub ${PipelineID}
-    Export:
-      Name: PipelineID
