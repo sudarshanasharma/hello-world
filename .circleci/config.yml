@@ -50,10 +50,8 @@ jobs:
       steps:
       - attach_workspace:
             at: ~/
-      - run: cat ~/id.txt > pipeline
-      - run: echo $pipeline
-      - run: aws s3 rm "s3://${pipeline}" --recursive
-      - run: aws cloudformation delete-stack --stack-name "stk-${pipeline}"
+      - run: aws s3 rm "s3://$(cat ~/id.txt)" --recursive
+      - run: aws cloudformation delete-stack --stack-name "stk-$(cat ~/id.txt)"
 
 workflows:
    default:
